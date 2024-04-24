@@ -1,0 +1,34 @@
+<mat-toolbar class="component--dialog-box__custom-toolbar">
+  <span class="text-sm font-[550]">Add / Edit Custom Non Operational Days</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="flex items-center justify-center">
+    <mat-icon (click)="onNoClick()">close</mat-icon>
+  </button>
+</mat-toolbar>
+<div class="p-[12px]">
+  <p class="primary-heading">
+    <span>Add / Edit Custom Non Operational Days</span>
+  </p>
+  <form [formGroup]="form">
+    <!-- <p>Holiday Date</p> -->
+    <mat-form-field appearance="outline" (click)="releasedAtPicker.open()"
+      class="component--mat-form-field__custom-input w-full">
+      <mat-label class="normal-heading"
+  >Pick Date</mat-label
+>
+      <!-- [min]="minDate"
+[matDatepickerFilter]="isDateDisabled" -->
+      <input matInput formControlName="Date" [min]="min_date" [matDatepicker]="releasedAtPicker" [matDatepickerFilter]="isDateDisabled"
+        class="normal-heading mt-2" />
+        <mat-error>Please Select Date</mat-error>
+
+      <mat-datepicker-toggle matSuffix [for]="releasedAtPicker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #releasedAtPicker> </mat-datepicker>
+    </mat-form-field>
+    <div class="content-end mt-3">
+      <button mat-raised-button class="primary-button " (click)="AddEdit()" [disabled]="form.invalid">Save</button>
+    </div>
+  </form>
+
+</div>

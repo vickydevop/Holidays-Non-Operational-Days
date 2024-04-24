@@ -1,0 +1,127 @@
+<div>
+  <p class="primary-heading">
+    List of Common Holidays for your educational Institution:
+  </p>
+  <div class="flex mt-2">
+    <div>
+      <button mat-raised-button class="primary-button " (click)="onInsertClick()">Add New</button>
+    </div>
+    <div class="ml-2">
+      <button mat-raised-button class="primary-button " (click)="onEditClick()" [disabled]="btndisable == false">Edit</button>
+    </div>
+    <div class="ml-2">
+      <button mat-raised-button class="primary-button " (click)="deletebutton()" [disabled]="deletebtn == false">Delete</button>
+    </div>
+    <div class="ml-2 mb-auto mt-auto normal-heading">
+      <mat-checkbox (change)="check_checkbox($event)">All</mat-checkbox>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <div class="mat-elevation-z8 mt-2 table-responsive w-full gt-xs:w-fit laptop:w-fit">
+        <div id="pdfTable">
+          <table id="excel_table" matSort mat-table #table [dataSource]="dataSource"
+            style="margin-left:auto; margin-right:auto"
+            class="component--mat-table__custom-table checklist-table table-bordered table-sm block">
+
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="Date">
+              <th mat-header-cell *matHeaderCellDef style="min-width: 200px; word-wrap: break-word; white-space: nowrap;
+                padding-left: 8px; padding-right: 8px;
+                vertical-align: middle;
+                      text-align: center;
+                      border-right: 1px solid #9a9a9a;">
+                Date
+              </th>
+              <!-- <tr *ngFor="let item of item | orderBy: sortOrder"> -->
+              <td style="border-right: 1px solid #9a9a9a;
+              vertical-align: middle;
+              padding-left: 8px;
+                      text-align: left;" mat-cell *matCellDef="let element">
+                <div class="">
+                  <mat-radio-button (click)="selectRow(element)" [checked]="check_rad_btn">
+                      {{ element.common_holiday_date | date:'dd MMM YYYY'}}
+                    </mat-radio-button>
+                </div>
+              </td>
+              <!-- </tr> -->
+            </ng-container>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="HolidayName" style="">
+              <th mat-header-cell *matHeaderCellDef style="min-width: 210px;word-wrap: break-word; white-space: nowrap;
+                 padding-left: 8px; padding-right: 8px;
+                 vertical-align: middle;
+                      text-align: center;
+                     ">
+                Holiday Name </th>
+              <td style="
+              vertical-align: middle;
+              padding-left: 8px;
+                      text-align: left;" mat-cell *matCellDef="let element">
+                <div class="">{{ element.common_holiday_name }}</div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" style="text-align: center"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"
+              (click)="selection.toggle(row); onRowClicked(row)" (mouseover)="row.hovered = true"
+              (mouseout)="row.hovered = false"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="6">
+                No data matching the filter
+                <!-- "{{ input.value }}" -->
+              </td>
+            </tr>
+          </table>
+        </div>
+        <mat-paginator class="component--mat-pagination__size" #paginator #paginatorElement
+          [length]="dataSource.data.length" [pageIndex]="0" [pageSizeOptions]="[5, 10, 20]" [pageSize]="5"
+          [allValue]="dataSource.data.length" appAddAllToPaginator (page)="pageChanged($event)">
+        </mat-paginator>
+        <div class="flex bg-white-black" id="export_btn">
+          <div class="custom-mat-floating-label">
+            <mat-form-field appearance="outline" class="component--mat-form-field__custom-input pl-2">
+              <mat-label>Filter</mat-label>
+              <input matInput (keyup)="applyFilter($event)" #input />
+            </mat-form-field>
+          </div>
+          <div class="w-full flex justify-end">
+            <span class="p-5 export-btn" [matMenuTriggerFor]="menu">Export</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mat Menu -->
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="downloadAsPDF()">
+        <mat-icon>picture_as_pdf</mat-icon>
+        <span>Print / Export PDF</span>
+      </button>
+      <button mat-menu-item (click)="exportReport('sample.xlsx')">
+        <mat-icon>grid_on</mat-icon>
+        <span>Export SpreadSheet</span>
+      </button>
+      <button mat-menu-item (click)="exportReport('sample.csv')">
+        <mat-icon>grid_on</mat-icon>
+        <span>Export csv File</span>
+      </button>
+      <button mat-menu-item (click)="exportReport('sample.json')">
+        <mat-icon>grid_on</mat-icon>
+        <span>Export json</span>
+      </button>
+    </mat-menu>
+  </div>
+
+  <!-- <div> -->
+    <!-- <p class="primary-heading mt-4">Customize Holidays for the below selected User Category:</p> -->
+
+    <!-- <div class="mt-2"> -->
+      <!-- <app-add-edit-customize-holidays></app-add-edit-customize-holidays> -->
+    <!-- </div> -->
+  <!-- </div> -->
+</div>

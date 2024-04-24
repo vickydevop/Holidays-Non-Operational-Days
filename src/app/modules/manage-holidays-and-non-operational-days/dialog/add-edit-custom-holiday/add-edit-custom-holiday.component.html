@@ -1,0 +1,53 @@
+<mat-toolbar class="component--dialog-box__custom-toolbar">
+  <span class="text-sm font-[550]"> Add / Edit Custom Holiday</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="flex items-center justify-center">
+    <mat-icon (click)="onNoClick()">close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="p-[12px]">
+  <p class="primary-heading">
+    <span>Add / Edit Custom Holiday</span>
+  </p>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline"
+      class="mt-2 w-full component--mat-form-field__custom-input component--mat-country_input__custom-style">
+      <mat-label class="normal-heading">Holiday Name</mat-label>
+      <input matInput formControlName="Holiday">
+      <mat-error>Please Enter Holiday Name</mat-error>
+
+    </mat-form-field>
+
+    <!-- <p class="mt-2">Holiday Date</p> -->
+
+
+<mat-form-field
+appearance="outline"
+(click)="releasedAtPicker.open()"
+class="component--mat-form-field__custom-input w-full mt-2"
+>
+<mat-label class="normal-heading"
+  >Holiday Date</mat-label
+>
+<!-- [min]="minDate"
+[matDatepickerFilter]="isDateDisabled" -->
+<input
+  matInput
+  formControlName="Date"
+  [matDatepickerFilter]="isDateDisabled"
+  [matDatepicker]="releasedAtPicker"
+  [min]="min_date"
+class="normal-heading"/>
+<mat-error>Please Select a Holiday Date</mat-error>
+
+<mat-datepicker-toggle matSuffix [for]="releasedAtPicker">
+</mat-datepicker-toggle>
+<mat-datepicker #releasedAtPicker> </mat-datepicker>
+</mat-form-field>
+    <div class="content-end mt-3">
+      <button mat-raised-button class="primary-button" [disabled]="form.invalid" (click)="AddEdit()">Save</button>
+    </div>
+  </form>
+
+</div>

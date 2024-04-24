@@ -1,0 +1,273 @@
+@import "variables";
+
+
+::ng-deep .select .mat-select-value{
+  // color: $red-text-color !important;
+  @apply xs:whitespace-normal
+ }
+
+.table-responsive .mat-table {
+  overflow-x: auto;
+  // width: auto;
+  width: 100%;
+}
+
+.table-responsive .mat-cell,
+.table-responsive .mat-header-cell {
+  word-wrap: initial;
+  display: table-cell;
+  // padding: 0px 30px;
+  line-break: unset;
+  // width: 1%;
+  position: sticky;
+  // text-align: center;
+  /* min-width: 100%; */
+  // white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.table-responsive .mat-row,
+.table-responsive .mat-header-row {
+  display: table-row;
+}
+
+.mat-toolbar-single-row {
+  height: 50px;
+}
+
+// .mat-paginator {
+//   background: unset;
+// }
+
+// .mat-paginator {
+//   background: none !important;
+// }
+
+.mat-paginator-page-size-label {
+  margin: 0 4px;
+  top: 5px;
+  position: relative;
+}
+
+//   .mat-paginator,
+// .mat-paginator-page-size .mat-select-trigger {
+//   height: 44px !important;
+// }
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px gray;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9a9a9a;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+section:hover {
+  cursor: auto;
+
+  ::-webkit-scrollbar {
+    // color: #ffff00;
+    width: 5px;
+    height: 5px;
+  }
+}
+.mat-column-select {
+  // border-right: 1px solid $secondary-color;
+  text-align: center;
+  padding-left: -8px;
+}
+.mat-column-name {
+  border-right: 1px solid $secondary-color;
+  margin-left: 10px;
+  // text-align: center;
+}
+.mat-column-getster_id {
+  border-right: 1px solid $secondary-color;
+  text-align: center;
+}
+.mat-column-getser_category {
+  // border-right: 1px solid $secondary-color;
+  text-align: center;
+}
+
+th.mat-header-cell:first-of-type,
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type {
+  padding-left: 1px;
+}
+
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
+  padding-right: 1px;
+}
+
+th.mat-header-cell {
+  // text-align: center !important;
+}
+
+tr.mat-row:hover {
+  // background-color: yellow;
+}
+
+// tr.mat-row:hover {
+//   :hover {
+//     background-color: yellow;
+//   }
+// }
+.mat-table {
+  // display: table;
+  // width: 100%;
+  // overflow: auto;
+  max-height: 236px;
+
+  > .mat-header-row,
+  > .mat-row {
+    display: table-row;
+    padding: 0;
+    border: none;
+
+    > .mat-header-cell,
+    > .mat-cell {
+      display: table-cell;
+      // height: 37px;
+      vertical-align: middle;
+
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+  }
+}
+
+.highlighted {
+  background: #42a948;
+  /* green */
+}
+
+
+// table border
+// th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+//   padding-left: 0;
+// }
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+padding-right: 0;
+}
+
+
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  color: #9a9a9a;
+}
+
+
+// Tree
+.example-tree-invisible {
+  display: none;
+}
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0px 0px 0px 30px;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.txtColor:hover {
+  color: red;
+  cursor: pointer;
+}
+
+// .mat-tree-position {
+//   position: fixed;
+//   top: 10%;
+// }
+
+// mat-tree-node {
+//   background-color: unset;
+// }
+
+// mat-tree {
+//   background: unset;
+// }
+
+mat-tree > mat-nested-tree-node > li > div.mat-tree-node {
+  border-radius: 4px;
+  // background-color: #f5f5f5;
+  &::before {
+    border: none;
+  }
+}
+
+mat-tree li.mat-tree-node,
+mat-tree div.mat-tree-node {
+  position: relative;
+  &::before {
+    position: absolute;
+    content: "";
+    border: 1px dotted lightgray;
+    position: absolute;
+    height: 40px;
+    left: -20px;
+    border-width: 0 0 1px 1px;
+    width: 24px;
+    bottom: 24px;
+  }
+}
+
+mat-tree mat-tree-node:first-child li.mat-tree-node::before,
+mat-tree mat-nested-tree-node:first-child > li > div.mat-tree-node::before {
+  height: 24px;
+}
+
+mat-tree mat-nested-tree-node:not(:last-child) > li > ul {
+  position: relative;
+  &::before {
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    left: -20px;
+    bottom: 24px;
+    content: "";
+    border-left: 1px dotted lightgrey;
+  }
+}
+
+.mat-tree-node {
+  &:hover {
+    background-color: #d6d6d6 !important;
+  }
+}
+
+
+
+.disabled {
+  pointer-events: none;
+  color: #BEBEBE;
+}
+
+.mat-calendar-body-cell.selected
+{
+  background-color:red;
+  border-radius: 100%
+}
+
+.highlight  {
+  background-color: green;
+  color: white; /* Optional: change text color for better visibility */
+}

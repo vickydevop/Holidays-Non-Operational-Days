@@ -1,0 +1,110 @@
+<mat-toolbar class="component--dialog-box__custom-toolbar">
+  <span class="text-sm font-[550]"></span>
+  <span class="example-spacer">Aduit Trail</span>
+  <button mat-icon-button class="flex items-center justify-center">
+    <mat-icon (click)="onNoClick()" class="cursor-pointer">close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="p-[12px]">
+  <div>
+    <div class="">
+      <div class="mat-elevation-z8 table-responsive w-full">
+        <div id="audit-trail">
+          <table id="excel_table" matSort mat-table #table [dataSource]="dataSource"
+            class="mat-elevation-z8 component--mat-table__custom-table checklist-table table-bordered table-sm block"
+            style="margin-left: auto;margin-right: auto;">
+            <ng-container matColumnDef="entry_by_user_id">
+              <th mat-header-cell *matHeaderCellDef style="min-width: 100px;text-align: center; word-wrap: break-word;
+             ">
+                Entry by <br> UserId</th>
+              <td mat-cell *matCellDef="let element">
+                <div style="display: flex; margin-left: 4px; ">
+                  {{element.entry_by_user_id}}
+                </div>
+              </td>
+            </ng-container>
+            <!-- style="white-space: nowrap" -->
+            <ng-container matColumnDef="entry_type">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;
+              border-right: 1px solid #9a9a9a;">Entry Type</th>
+              <td mat-cell *matCellDef="let element" style="min-width:80px;max-width: 160px; word-wrap: break-word;padding-left: 7.5px;padding-right: 7.5px;
+                border-right: 1px solid #9a9a9a;">
+                {{ element.entry_type }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="entry_date_time">
+              <th mat-header-cell *matHeaderCellDef style="min-width:150px; word-wrap: break-word;text-align: center;
+              border-right: 1px solid #9a9a9a;">
+                Entry Date & Time
+              </th>
+              <td mat-cell *matCellDef="let element; let i = index" style="padding-left: 7.5px;padding-right: 7.5px;
+              border-right: 1px solid #9a9a9a;">
+                {{ element.entry_date_time|date:'dd MMM y h:mm a' }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="app_id">
+              <th mat-header-cell *matHeaderCellDef style="min-width: 100px; word-wrap: break-word;text-align: center;">
+                app_id
+              </th>
+              <td mat-cell *matCellDef="let element" style="padding-left: 2px;">
+                <div style="margin-top: 4px;display: flex;justify-items: center; margin-left: 4px;">
+                  {{element.app_id}}
+                </div>
+
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" style="text-align: center"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">
+                No data matching the filter
+                <!-- "{{ input.value }}" -->
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div>
+          <mat-paginator class="component--mat-pagination__size" #paginator #paginatorElement
+            [length]="dataSource.data.length" [pageIndex]="0" [pageSizeOptions]="[5, 10, 20]" [pageSize]="5"
+            [allValue]="dataSource.data.length" appAddAllToPaginator (page)="pageChanged($event)">
+          </mat-paginator>
+          <div class="flex bg-white-black" id="export_btn">
+            <div class="custom-mat-floating-label">
+              <mat-form-field appearance="outline" class="component--mat-form-field__custom-input pl-2">
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" #input />
+              </mat-form-field>
+            </div>
+            <div class="w-full flex justify-end">
+              <span class="p-5 export-btn" [matMenuTriggerFor]="menu">Export</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="downloadAsPDF()">
+          <mat-icon>picture_as_pdf</mat-icon>
+          <span>Print / Export PDF</span>
+        </button>
+        <button mat-menu-item (click)="exportReport('sample.xlsx')">
+          <mat-icon>grid_on</mat-icon>
+          <span>Export SpreadSheet</span>
+        </button>
+        <button mat-menu-item (click)="exportReport('sample.csv')">
+          <mat-icon>grid_on</mat-icon>
+          <span>Export csv File</span>
+        </button>
+        <button mat-menu-item (click)="exportReport('sample.json')">
+          <mat-icon>grid_on</mat-icon>
+          <span>Export json</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</div>
